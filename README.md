@@ -127,19 +127,21 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    subgraph AUTO["🤖 자동으로 채워짐"]
-        LED["Ledger<br/>결제 내역"]
-        MON["Monthly<br/>달마다 한 줄 요약"]
-    end
-    subgraph MANUAL["✍️ 직접 적는 곳"]
-        SET["Settings<br/>예산·설정"]
-        FIX["Fixed<br/>월세·구독·청소비"]
-        EXT["Extra<br/>환급·카드 밖 지출"]
-        TAG["Ledger의 Tag 칸<br/>데이트·여행"]
-    end
-    MANUAL --> DASH(["📱 대시보드 · 알림"])
-    AUTO --> DASH
+    SET["Settings<br/>예산·설정"] --> APP
+    FIX["Fixed<br/>월세·구독·청소비"] --> APP
+    EXT["Extra<br/>환급·카드 밖 지출"] --> APP
+    TAG["Ledger의 Tag 칸<br/>데이트·여행"] --> APP
+    SMS["카드 문자"] --> APP
+    APP["Code.gs<br/>계산"] --> LED["Ledger<br/>결제 내역"]
+    APP --> MON["Monthly<br/>달마다 한 줄"]
+    APP --> DASH(["대시보드 · 알림"])
+    classDef manual fill:#fff6e5,stroke:#d4a017
+    classDef auto fill:#eef3fb,stroke:#3A6EA5
+    class SET,FIX,EXT,TAG manual
+    class LED,MON auto
 ```
+
+<sub>🟨 노란 칸 = 직접 적는 곳 · 🟦 파란 칸 = 자동으로 채워지는 곳</sub>
 
 시트 상단 메뉴 **Budget** 에서 이번 주 요약 보기 · 월 요약 남기기 · 원장 정리를 할 수 있습니다.
 
